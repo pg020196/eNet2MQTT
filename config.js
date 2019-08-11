@@ -18,7 +18,7 @@ module.exports = require('yargs')
     })
     .boolean('mqtt-retain')
     .default({
-        'mqtt-url': 'mqtt://192.168.10.6',
+        'mqtt-url': 'mqtt://192.168.2.18',
         name: 'enet',
         verbosity: 'info',
         'mqtt-retain': true,

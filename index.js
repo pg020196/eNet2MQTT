@@ -3,9 +3,7 @@
 const log = require('yalm');
 const oe = require('obj-ease');
 const Mqtt = require('mqtt');
-//const Hue = require('node-hue-api');
 const eNet = require('node-enet-api');
-//const pjson = require('persist-json')('hue2mqtt');
 const config = require('./config.js');
 const pkg = require('./package.json');
 
@@ -14,8 +12,6 @@ let mqttConnected = false;
 let enetConnected = false;
 let enetAddress;
 var gw;
-
-
 
 log.setLevel(config.verbosity);
 log.info(pkg.name + ' ' + pkg.version + ' starting');
@@ -75,6 +71,8 @@ function discovered()
     
         for (var i = 0; i < arr.length-1; ++i) {
             try{
+				//log.debug("loggin easy shit. Arr length:" + arr.length)
+				//log.debug("array content at this i" + i + arr[i])
                 var json=JSON.parse(arr[i]);
                 //publish dimmer and switch states on mqtt
                 if (!(json.VALUES === undefined)){
@@ -102,8 +100,6 @@ function discovered()
         setTimeout(arguments.callee, 300000);
     })();
     
-    
-    
 
     
     //Connect to mqtt
@@ -123,6 +119,7 @@ function discovered()
 	mqtt.subscribe(config.name + '/set/#');
     });
     
+	// on mqtt connection closed
     mqtt.on('close', () => {
         if (mqttConnected) {
             mqttConnected = false;
@@ -130,19 +127,24 @@ function discovered()
         }
     });
     
+	// log mqtt errors
     mqtt.on('error', err => {
         log.error('mqtt', err.toString());
     });
     
+	// log mqtt server offline
     mqtt.on('offline', () => {
         log.error('mqtt offline');
     });
     
+	// log reconnect attempts
     mqtt.on('reconnect', () => {
         log.info('mqtt reconnect');
     });
     
+	// on a new message on the MQTT topic, call value on gateway
     mqtt.on('message', (topic, payload) => {
+		log.info("New MQTT message found on " + topic)
         payload = payload.toString();
         log.debug('mqtt <', topic, payload);
     
@@ -188,10 +190,8 @@ function discovered()
         }
     });
 }
-    
-    
 
-
+// set a value on the gateway
 function setValue(type, name, payload) {
     gw.setValueDim(name, payload, function(err, res) {
         if (err) log.error("error: " + err);
@@ -201,6 +201,7 @@ function setValue(type, name, payload) {
     });   
 };
 
+// sign in to gateway
 function signIn(name) {
     gw.signIn(name, function(err, res) {
     if (err) log.error("sign in error: " + err);
@@ -208,6 +209,7 @@ function signIn(name) {
     });
 };
 
+// publish state to mqtt
 function mqttPublish(topic, payload, options) {
     if (!payload) {
         payload = '';
