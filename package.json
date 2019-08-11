@@ -17,26 +17,22 @@
   "engines": {
     "node": ">=0.12.0"
   },
-  "author": {
-    "name": "Anders Gellein"
-  },
   "homepage": "https://github.com/andersgel/enet2mqtt",
   "bugs": {
     "url": "https://github.com/andersgel/enet2mqtt/issues"
    },
   "repository": {
     "type": "git",
-    "url": "git://github.com/andersgel/enet2mqtt"
+    "url": "git://github.com/thomashogema/enet2mqtt/"
   },
     "yargs": {
     "boolean-negation": false
   },
     "dependencies": {
-    "mqtt": "^2.16.0",
-    "node-enet-api": "^0.1.0",
-    "obj-ease": "^1.0.1",
-    "persist-json": "^1.0.1",
+    "mqtt": "^3.0.0",
+	"node-enet-api": "git://github.com/JulianBX/node-enet-api",
+    "persist-json": "^1.2.0",
     "yalm": "^4.1.0",
-    "yargs": "^11.0.0"
+    "yargs": "^13.3.0"
   }
 }

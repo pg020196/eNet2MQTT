@@ -1,7 +1,6 @@
 #!/usr/bin/env node
 
 const log = require('yalm');
-const oe = require('obj-ease');
 const Mqtt = require('mqtt');
 const eNet = require('node-enet-api');
 const config = require('./config.js');
@@ -69,14 +68,16 @@ function discovered()
     
         this.data = arr[arr.length-1];
     
-        for (var i = 0; i < arr.length-1; ++i) {
+	
+        for (var i = 0; i < arr.length-1; ++i) { //TODO: on first connection to the gateway, an error is thrown
             try{
 				//log.debug("loggin easy shit. Arr length:" + arr.length)
 				//log.debug("array content at this i" + i + arr[i])
                 var json=JSON.parse(arr[i]);
                 //publish dimmer and switch states on mqtt
                 if (!(json.VALUES === undefined)){
-                    log.info("Gateway:" + JSON.stringify(json));
+                    //log.info("Gateway:" + JSON.stringify(json));
+					log.info("Publishing updated info from gateway")
                     for (var i = 0; i < json.VALUES.length; i++){
                         mqttPublish('enet/get/dimmmer/'+json.VALUES[i].NUMBER  , json.VALUES[i].VALUE, {retain: config.mqttRetain});
                         mqttPublish('enet/get/switch/'+json.VALUES[i].NUMBER  , json.VALUES[i].STATE, {retain: config.mqttRetain});
