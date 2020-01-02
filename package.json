@@ -17,20 +17,17 @@
   "engines": {
     "node": ">=0.12.0"
   },
-  "homepage": "https://github.com/andersgel/enet2mqtt",
+  "homepage": "https://github.com/thomashogema/enet2mqtt",
   "bugs": {
-    "url": "https://github.com/andersgel/enet2mqtt/issues"
+    "url": "https://github.com/thomashogema/enet2mqtt/issues"
    },
   "repository": {
     "type": "git",
     "url": "git://github.com/thomashogema/enet2mqtt/"
   },
-    "yargs": {
-    "boolean-negation": false
-  },
     "dependencies": {
     "mqtt": "^3.0.0",
-	"node-enet-api": "git://github.com/JulianBX/node-enet-api",
+    "node-enet-api": "^0.1.0",
     "persist-json": "^1.2.0",
     "yalm": "^4.1.0",
     "yargs": "^13.3.0"
