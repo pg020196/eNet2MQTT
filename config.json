@@ -8,11 +8,11 @@
     "startup": "before",
     "boot": "auto",
     "options": {
-      "mqtt_ip": "192.168.2.18"
-      "log_level": "info",
+      "mqtt_ip": "192.168.2.18",
+      "log_level": "info"
     },
     "schema": {
-      "mqtt_ip": "str"
-      "log_level": "match(^(trace|debug|info|notice|warning|error|fatal)$)",
+      "mqtt_ip": "str",
+      "log_level": "match(^(trace|debug|info|notice|warning|error|fatal)$)"
     }
 }
