@@ -6,44 +6,57 @@ const eNet = require('node-enet-api');
 const config = require('./config.js');
 const pkg = require('./package.json');
 
+// Declare variables
 let mqtt;
-let mqttConnected = false;
-let enetConnected = false;
-let enetAddress;
+var mqttConnected = false;
+var enetConnected = false;
+var enetAddress;
 var gw;
 
+// Start script with info logs
 log.setLevel(config.verbosity);
 log.info(pkg.name + ' ' + pkg.version + ' starting');
 
-//Find gateway
-var discover = new eNet.discover();
+// Retrieve options from HASSIO
+var options = process.argv[2]; //value will be "time that is passed from bash file"
+log.info("Received variable:",options);
 
+// TODO: read variables from json
+var mqtt_ip = options.mqtt_ip
+var log_level = options.log_level
+log.info("mqtt_ip: " + mqtt_ip + " log_level: " + log_level)
+
+// Find gateway
+var discover = new eNet.discover();
+log.info("Discovering eNet Gateways ...");
+
+// Greate gateway when found
 discover.on('discover', function(gws) {
     log.info('New gateway: ' + JSON.stringify(gws));
     gw = eNet.gateway(gws);
 });
 
-//on discovery call discovered function
+// Handle discover response from eNet API
 discover.discover(function(err, gws) {
     if (err) console.error('error: ' + err);
     else if (gws.length == 0) {
-      log.error('no gateways found')
+      log.error('No gateways found')
       process.exit()
     }
-    else console.log('All discovered gateways: ' + JSON.stringify(gws));
+    else log.info('All discovered gateways: ' + JSON.stringify(gws));
     discovered();
 });
 
-//function to call when gateway has been found
+// Process discovered gateway
 function discovered()
 {
-    //connect to the discovered gateway
+    // Connect to the discovered gateway
     enetAddress = gw.host;
     log.info (enetAddress);
     gw.idleTimeout = 600000;
     gw.connect();
 
-    //get gateway version
+    // Get gateway version
     log.info("Requesting gateway version.");
     gw.getVersion(function(err, res) {
         if (err) log.error("error: " + err);
@@ -51,31 +64,30 @@ function discovered()
         enetConnected = true;
     });
 
-    //get channel info
+    // Get channel info
     log.info("Requesting Channel Info");
     gw.getChannelInfo(function(err, res) {
         if (err) log.error("error: " + err);
         else log.debug("command succeeded: \n" + JSON.stringify(res));
     });
 
-    //get project listStyleType
+    // Get project listStyleType
     log.info("Requesting Project List");
     gw.getProjectList(function(err, res) {
         if (err) log.error("error: " + err);
         else log.debug("command succeeded: \n" + JSON.stringify(res));
     });
 
-    //trying to get all data from signed in channels
+    // Trying to get all data from signed in channels
     gw.client.on('data', function(data) {
         this.data += data;
         var arr = this.data.split("\r\n\r\n");
 
         this.data = arr[arr.length-1];
 
-
         for (var i = 0; i < arr.length-1; ++i) { //TODO: on first connection to the gateway, an error is thrown
             try{
-				//log.debug("loggin easy shit. Arr length:" + arr.length)
+				//log.debug("loggin easy stuff. Arr length:" + arr.length)
 				//log.debug("array content at this i" + i + arr[i])
                 var json=JSON.parse(arr[i]);
                 //publish dimmer and switch states on mqtt
@@ -94,19 +106,19 @@ function discovered()
         }
     }.bind(this));
 
-    //sign in to channels if connection to enet is lost
+    // Sign in to channels if connection to enet is lost
     gw.client.on('close', function() {
         signIn(config.channelArray);
     });
 
-    //sign in every 5 minutes
+    // Sign in every 5 minutes
     (function(){
         signIn(config.channelArray);
         setTimeout(arguments.callee, 300000);
     })();
 
 
-    //Connect to mqtt
+    // Connect to mqtt
     log.info('mqtt trying to connect', config.mqttUrl);
 
     mqtt = Mqtt.connect(config.mqttUrl, {
@@ -115,16 +127,16 @@ function discovered()
         rejectUnauthorized: !config.insecure
     });
 
-	// log mqtt connection succeeded
+	// Log mqtt connection succeeded
     mqtt.on('connect', () => {
         mqttConnected = true;
         log.info('mqtt connected', config.mqttUrl);
         mqtt.publish(config.name + '/connected', enetConnected ? '2' : '1', {retain: config.mqttRetain});
         log.info('mqtt subscribe', config.name + '/set/#');
-	mqtt.subscribe(config.name + '/set/#');
+	      mqtt.subscribe(config.name + '/set/#');
     });
 
-	// on mqtt connection closed
+	// On mqtt connection closed
     mqtt.on('close', () => {
         if (mqttConnected) {
             mqttConnected = false;
@@ -132,22 +144,22 @@ function discovered()
         }
     });
 
-	// log mqtt errors
+	// Log mqtt errors
     mqtt.on('error', err => {
         log.error('mqtt', err.toString());
     });
 
-	// log mqtt server offline
+	// Log mqtt server offline
     mqtt.on('offline', () => {
         log.error('mqtt offline');
     });
 
-	// log reconnect attempts
+	// Log reconnect attempts
     mqtt.on('reconnect', () => {
         log.info('mqtt reconnect');
     });
 
-	// on a new message on the MQTT topic, call value on gateway
+	// On a new message on the MQTT topic, call value on gateway
     mqtt.on('message', (topic, payload) => {
 		log.info("New MQTT message found on " + topic)
         payload = payload.toString();
@@ -196,7 +208,7 @@ function discovered()
     });
 }
 
-// set a value on the gateway
+// Function to set a value on the gateway
 function setValue(type, name, payload) {
     gw.setValueDim(name, payload, function(err, res) {
         if (err) log.error("error: " + err);
@@ -206,7 +218,7 @@ function setValue(type, name, payload) {
     });
 };
 
-// sign in to gateway
+// Function to sign in to gateway
 function signIn(name) {
     gw.signIn(name, function(err, res) {
     if (err) log.error("sign in error: " + err);
@@ -214,7 +226,7 @@ function signIn(name) {
     });
 };
 
-// publish state to mqtt
+// Function to publish state to mqtt
 function mqttPublish(topic, payload, options) {
     if (!payload) {
         payload = '';
