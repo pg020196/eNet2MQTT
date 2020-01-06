@@ -17,14 +17,14 @@ var gw;
 log.setLevel(config.verbosity);
 log.info(pkg.name + ' ' + pkg.version + ' starting');
 
-// Retrieve options from HASSIO
-var options = process.argv[2]; //value will be "time that is passed from bash file"
-log.info("Received variable:",options);
-
-// TODO: read variables from json
-var mqtt_ip = options.mqtt_ip
-var log_level = options.log_level
-log.info("mqtt_ip: " + mqtt_ip + " log_level: " + log_level)
+// // Retrieve options from HASSIO
+// var options = process.argv[2]; //value will be "time that is passed from bash file"
+// log.info("Received variable:",options);
+//
+// // TODO: read variables from json
+// var mqtt_ip = options.mqtt_ip
+// var log_level = options.log_level
+// log.info("mqtt_ip: " + mqtt_ip + " log_level: " + log_level)
 
 // Find gateway
 var discover = new eNet.discover();
