@@ -1,6 +1,6 @@
 {
   "name": "enet2mqtt",
-  "version": "0.2",
+  "version": "0.0.2",
   "description": "Bridge between  Gira Enet Mobile Gate and MQTT ",
   "license": "MIT",
   "main": "index.js",
@@ -20,12 +20,12 @@
   "homepage": "https://github.com/thomashogema/enet2mqtt",
   "bugs": {
     "url": "https://github.com/thomashogema/enet2mqtt/issues"
-   },
+  },
   "repository": {
     "type": "git",
     "url": "git://github.com/thomashogema/enet2mqtt/"
   },
-    "dependencies": {
+  "dependencies": {
     "mqtt": "^3.0.0",
     "node-enet-api": "^0.1.0",
     "persist-json": "^1.2.0",
