@@ -10,6 +10,8 @@ npm install
 
 # Expose broadcast listen port
 EXPOSE 2906
+EXPOSE 3112
+EXPOSE 9050
 
 # Copy data for add-on
 COPY run.sh /
