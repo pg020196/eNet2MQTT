@@ -1,6 +1,6 @@
 {
     "name": "eNet2MQTT",
-    "version": "0.2",
+    "version": "0.3",
     "slug": "enet2mqtt",
     "description": "Attempt at eNet2MQTT add-on",
     "url": "https://github.com/thomashogema/enet2mqtt",
