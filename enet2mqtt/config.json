@@ -14,5 +14,8 @@
     "schema": {
       "mqtt_ip": "str",
       "log_level": "match(^(trace|debug|info|notice|warning|error|fatal)$)"
-    }
+    },
+    "ports": {
+    "2906/udp": 2906
+  }
 }
