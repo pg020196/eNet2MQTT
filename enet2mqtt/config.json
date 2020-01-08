@@ -16,6 +16,8 @@
       "log_level": "match(^(trace|debug|info|notice|warning|error|fatal)$)"
     },
     "ports": {
-    "2906/udp": 2906
+    "2906/udp": 2906,
+    "3112/udp": 3112,
+    "9050/udp": 9050
   }
 }
