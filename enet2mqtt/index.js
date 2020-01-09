@@ -36,14 +36,17 @@ discover.on('discover', function(gws) {
     gw = eNet.gateway(gws);
 });
 
+// Manually connect to gateway
+gw = eNet.gateway({host: 192.168.2.2});
+
 // Handle discover response from eNet API
 discover.discover(function(err, gws) {
     if (err) console.error('error: ' + err);
     else if (gws.length == 0) {
-      log.error('No gateways found')
-      process.exit()
+      log.error('No gateways disovered')
+      //process.exit()
     }
-    else log.info('All discovered gateways: ' + JSON.stringify(gws));
+    log.info('All discovered gateways: ' + JSON.stringify(gws));
     discovered();
 });
 
