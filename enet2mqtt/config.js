@@ -20,7 +20,7 @@ module.exports = require('yargs')
     .default({
         'mqtt-url': 'mqtt://192.168.2.18',
         name: 'enet',
-        verbosity: 'info',
+        verbosity: 'debug',
         'mqtt-retain': true,
         'channelArray': [16, 17, 18, 19]
     })

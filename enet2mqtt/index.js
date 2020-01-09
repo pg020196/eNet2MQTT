@@ -37,7 +37,7 @@ discover.on('discover', function(gws) {
 });
 
 // Manually connect to gateway
-gw = eNet.gateway({host: 192.168.2.2});
+gw = eNet.gateway({host: '192.168.2.2'});
 
 // Handle discover response from eNet API
 discover.discover(function(err, gws) {
