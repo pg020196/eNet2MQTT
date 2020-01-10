@@ -84,15 +84,20 @@ function discovered()
     // Trying to get all data from signed in channels
     gw.client.on('data', function(data) {
         this.data += data;
+
+        log.debug('this.data looks like: ' + this.data)
         var arr = this.data.split("\r\n\r\n");
+        log.debug('split data (arr) looks like: ' + arr)
 
         this.data = arr[arr.length-1];
+        log.debug('updated this.data looks like: ' + this.data)
 
         for (var i = 0; i < arr.length-1; ++i) { //TODO: on first connection to the gateway, an error is thrown
             try{
 				//log.debug("loggin easy stuff. Arr length:" + arr.length)
 				//log.debug("array content at this i" + i + arr[i])
                 var json=JSON.parse(arr[i]);
+                log.debug('generated json looks like: ' + json)
                 //publish dimmer and switch states on mqtt
                 if (!(json.VALUES === undefined)){
                     //log.info("Gateway:" + JSON.stringify(json));
