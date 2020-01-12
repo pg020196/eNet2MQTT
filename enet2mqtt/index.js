@@ -38,19 +38,22 @@ log.info(pkg.name + ' ' + pkg.version + ' starting');
 //     gw = eNet.gateway(gws);
 // });
 
+// // Handle discover response from eNet API
+// discover.discover(function(err, gws) {
+//     if (err) console.error('error: ' + err);
+//     else if (gws.length == 0) {
+//       log.error('No gateways disovered')
+//       //process.exit()
+//     }
+//     log.info('All discovered gateways: ' + JSON.stringify(gws));
+//     discovered();
+// });
+
+
 // Manually connect to gateway
 gw = eNet.gateway({host: '192.168.2.2'});
 
-// Handle discover response from eNet API
-discover.discover(function(err, gws) {
-    if (err) console.error('error: ' + err);
-    else if (gws.length == 0) {
-      log.error('No gateways disovered')
-      //process.exit()
-    }
-    log.info('All discovered gateways: ' + JSON.stringify(gws));
-    discovered();
-});
+discovered();
 
 // Process discovered gateway
 function discovered()
