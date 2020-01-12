@@ -26,15 +26,17 @@ log.info(pkg.name + ' ' + pkg.version + ' starting');
 // var log_level = options.log_level
 // log.info("mqtt_ip: " + mqtt_ip + " log_level: " + log_level)
 
-// Find gateway
-var discover = new eNet.discover();
-log.info("Discovering eNet Gateways ...");
 
-// Greate gateway when found
-discover.on('discover', function(gws) {
-    log.info('New gateway: ' + JSON.stringify(gws));
-    gw = eNet.gateway(gws);
-});
+// Not functional: gateway discovery
+// // Find gateway
+// var discover = new eNet.discover();
+// log.info("Discovering eNet Gateways ...");
+//
+// // Greate gateway when found
+// discover.on('discover', function(gws) {
+//     log.info('New gateway: ' + JSON.stringify(gws));
+//     gw = eNet.gateway(gws);
+// });
 
 // Manually connect to gateway
 gw = eNet.gateway({host: '192.168.2.2'});
