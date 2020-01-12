@@ -8,11 +8,6 @@ ADD package.json /
 RUN apk add --no-cache nodejs-npm jq && \
 npm install
 
-# Expose all ports used by the eNet Mobile Gate API
-EXPOSE 2906/udp
-EXPOSE 3112/udp
-EXPOSE 9050/udp
-
 # Copy data for add-on
 COPY run.sh /
 COPY index.js /
