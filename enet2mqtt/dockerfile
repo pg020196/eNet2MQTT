@@ -13,6 +13,7 @@ npm install
 COPY run.sh /
 COPY index.js /
 COPY config.js /
+COPY config.json /
 
 # Directly run index.js
 RUN chmod a+x /index.js
