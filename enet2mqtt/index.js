@@ -4,6 +4,7 @@ const log = require('yalm');
 const Mqtt = require('mqtt');
 const eNet = require('node-enet-api');
 const config = require('./config.js');
+const haconfig = require('./config.json')
 const pkg = require('./package.json');
 
 // Declare variables
@@ -15,7 +16,7 @@ var gw;
 
 // Start script with info logs
 log.setLevel(config.verbosity);
-log.info(pkg.name + ' ' + pkg.version + ' starting');
+log.info(pkg.name + ' ' + haconfig.version + ' starting');
 
 // // Retrieve options from HASSIO
 // var options = process.argv[2]; //value will be "time that is passed from bash file"
@@ -51,7 +52,9 @@ log.info(pkg.name + ' ' + pkg.version + ' starting');
 
 
 // Manually connect to gateway
-gw = eNet.gateway({host: '192.168.2.2'});
+gw = eNet.gateway({host: config.enet_ip});
+
+// TODO: check if a gateway has been found
 
 discovered();
 

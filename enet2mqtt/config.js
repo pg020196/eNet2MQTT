@@ -6,12 +6,14 @@ module.exports = require('yargs')
     .describe('verbosity', 'possible values: "error", "warn", "info", "debug"')
     .describe('name', 'instance name. used as mqtt client id and as prefix for connected topic')
     .describe('mqtt-url', 'mqtt broker url.')
+    .describe('enet_ip', 'eNet Mobile Gate IP.')
     .describe('help', 'show help')
     .describe('channelArray', 'Array with channels to monitor, [ch1, ch2, ..]')
     .describe('mqtt-retain', 'enable/disable retain flag for mqtt messages')
     .alias({
         h: 'help',
         m: 'mqtt-url',
+        e: 'enet_ip',
         n: 'name',
         v: 'verbosity',
         c: 'channelArray'
@@ -19,6 +21,7 @@ module.exports = require('yargs')
     .boolean('mqtt-retain')
     .default({
         'mqtt-url': 'mqtt://192.168.2.18',
+        'enet_ip': '192.168.2.2',
         name: 'enet',
         verbosity: 'info',
         'mqtt-retain': true,

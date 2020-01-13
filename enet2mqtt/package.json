@@ -1,6 +1,6 @@
 {
   "name": "enet2mqtt",
-  "version": "0.0.2",
+  "version": "0.3.0",
   "description": "Bridge between  Gira Enet Mobile Gate and MQTT ",
   "license": "MIT",
   "main": "index.js",
