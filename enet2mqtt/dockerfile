@@ -6,6 +6,7 @@ ENV LANG C.UTF-8
 ADD package.json /
 
 RUN apk add --no-cache nodejs-npm jq && \
+npm install gulp -g && \
 npm install
 
 # Copy data for add-on
@@ -14,9 +15,9 @@ COPY index.js /
 COPY config.js /
 
 # Directly run index.js
-RUN chmod a+x /index.js
-CMD [ "/index.js" ]
+#RUN chmod a+x /index.js
+#CMD [ "/index.js" ]
 
 # Alternative executing run.sh:
-#RUN chmod a+x /run.sh
-#CMD [ "/run.sh" ]
+RUN chmod a+x /run.sh
+CMD [ "/run.sh" ]

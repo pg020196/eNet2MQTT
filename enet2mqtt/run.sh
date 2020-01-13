@@ -1,14 +1,17 @@
-echo Hello!
-echo started run.sh
-#node v
-#npm v
+echo Started run.sh from eNet2MQTT
+node -v
+npm -v
+gulp -v
 
-while ! ping -c1 192.168.2.2 &>/dev/null; do echo "Ping Fail - `date`"; done ; echo "Host Found - `date`" ; node index.js
+# Retrieving options variables
+CONFIG_PATH=/data/options.json
+ENET_IP="$(jq --raw-output '.enet_ip' $CONFIG_PATH)"
+MQTT_IP="$(jq --raw-output '.mqtt_ip' $CONFIG_PATH)"
+LOG_LEVEL="$(jq --raw-output '.log_level' $CONFIG_PATH)"
 
-# Attempt to give variables to JavaScipt:
-#options=/data/options.json
-echo options are:
-echo data/options.json
+echo eNet IP is: $ENET_IP
+echo MQTT IP is: $MQTT_IP
+echo Log level is: $LOG_LEVEL
 
 echo starting node application
-node index.js
+node index.js -m $MQTT_IP -v $LOG_LEVEL
