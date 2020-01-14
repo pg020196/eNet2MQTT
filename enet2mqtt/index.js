@@ -6,7 +6,7 @@ const eNet = require('node-enet-api');
 const config = require('./config.js');
 const haconfig = require('./config.json');
 const pkg = require('./package.json');
-const options = require('./options.json');
+const options = require('/data/options.json');
 
 // Declare variables
 let mqtt;
