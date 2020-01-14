@@ -1,9 +1,6 @@
-# enet2mqtt
-Bridge between  Gira Mobile Gate and MQTT 
+# eNet2MQTT
+Bridge between Gira Mobile Gate and MQTT. Can be run as node app or used as addon for Home Assistant.
 
-Still under development. Original code from: https://github.com/andersgel/enet2mqtt
+Requires nodeJS
 
-Requires nodejs
-Requires node-enet-api
-
-run `npm install https://github.com/JulianBX/node-enet-api` to install required dependecies and `node index.js` so start.
+run `npm install` to install required dependencies and `node index.js` so start.

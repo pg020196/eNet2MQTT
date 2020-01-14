@@ -4,8 +4,9 @@ const log = require('yalm');
 const Mqtt = require('mqtt');
 const eNet = require('node-enet-api');
 const config = require('./config.js');
-const haconfig = require('./config.json')
+const haconfig = require('./config.json');
 const pkg = require('./package.json');
+const options = require('./options.json');
 
 // Declare variables
 let mqtt;
@@ -17,6 +18,10 @@ var gw;
 // Start script with info logs
 log.setLevel(config.verbosity);
 log.info(pkg.name + ' ' + haconfig.version + ' starting');
+
+log.info('received options: ' + options);
+log.info('received mqtt: ' + options.mqtt_ip)
+
 
 // // Retrieve options from HASSIO
 // var options = process.argv[2]; //value will be "time that is passed from bash file"
