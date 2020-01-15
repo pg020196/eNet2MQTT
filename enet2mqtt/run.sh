@@ -1,5 +1,7 @@
 #!/bin/bash
-set -e
+
+# The following option will exit on any errors:
+#set -e
 
 # Try stuff that should work
 node -v 

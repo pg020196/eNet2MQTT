@@ -6,7 +6,7 @@ const eNet = require('node-enet-api');
 const config = require('./config.js');
 const haconfig = require('./config.json');
 const pkg = require('./package.json');
-const options = require('/data/options.json');
+//const options = require('/data/options.json');
 
 // Declare variables
 let mqtt;
@@ -20,10 +20,10 @@ log.setLevel(config.verbosity);
 log.info(pkg.name + ' ' + haconfig.version + ' starting');
 
 
-// Retrieve options from options.json
-var mqtt_ip = options.mqtt_ip
-var enet_ip = options.enet_ip
-var log_level = options.log_level
+// Retrieve options from CONFIG.js
+var mqtt_ip = config.mqtt_ip
+var enet_ip = config.enet_ip
+var log_level = config.log_level
 log.info("enet_ip: " + enet_ip + "mqtt_ip: " + mqtt_ip + " log_level: " + log_level)
 
 
