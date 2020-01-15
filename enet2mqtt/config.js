@@ -12,18 +12,18 @@ module.exports = require('yargs')
     .describe('mqtt-retain', 'enable/disable retain flag for mqtt messages')
     .alias({
         h: 'help',
-        m: 'mqtt_url',
+        m: 'mqtt_ip',
         e: 'enet_ip',
         n: 'name',
-        v: 'verbosity',
+        v: 'log_level',
         c: 'channelArray'
     })
     .boolean('mqtt-retain')
     .default({
-        'mqtt_url': 'mqtt://192.168.2.18',
+        'mqtt_ip': 'mqtt://192.168.2.18',
         'enet_ip': '192.168.2.2',
-        name: 'enet',
-        verbosity: 'info',
+        'name': 'enet',
+        'log_level': 'info',
         'mqtt-retain': true,
         'channelArray': [16, 17, 18, 19]
     })

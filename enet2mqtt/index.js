@@ -26,29 +26,6 @@ var log_level = config.log_level
 log.info("enet_ip: " + enet_ip + "mqtt_ip: " + mqtt_ip + " log_level: " + log_level)
 
 
-// Not functional: gateway discovery
-// // Find gateway
-// var discover = new eNet.discover();
-// log.info("Discovering eNet Gateways ...");
-//
-// // Greate gateway when found
-// discover.on('discover', function(gws) {
-//     log.info('New gateway: ' + JSON.stringify(gws));
-//     gw = eNet.gateway(gws);
-// });
-
-// // Handle discover response from eNet API
-// discover.discover(function(err, gws) {
-//     if (err) console.error('error: ' + err);
-//     else if (gws.length == 0) {
-//       log.error('No gateways disovered')
-//       //process.exit()
-//     }
-//     log.info('All discovered gateways: ' + JSON.stringify(gws));
-//     discovered();
-// });
-
-
 // Manually connect to gateway
 gw = eNet.gateway({host: config.enet_ip});
 
