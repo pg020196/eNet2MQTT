@@ -19,18 +19,12 @@ var gw;
 log.setLevel(config.verbosity);
 log.info(pkg.name + ' ' + haconfig.version + ' starting');
 
-log.info('received options: ' + options);
-log.info('received mqtt: ' + options.mqtt_ip)
 
-
-// // Retrieve options from HASSIO
-// var options = process.argv[2]; //value will be "time that is passed from bash file"
-// log.info("Received variable:",options);
-//
-// // TODO: read variables from json
-// var mqtt_ip = options.mqtt_ip
-// var log_level = options.log_level
-// log.info("mqtt_ip: " + mqtt_ip + " log_level: " + log_level)
+// Retrieve options from options.json
+var mqtt_ip = options.mqtt_ip
+var enet_ip = options.enet_ip
+var log_level = options.log_level
+log.info("enet_ip: " + enet_ip + "mqtt_ip: " + mqtt_ip + " log_level: " + log_level)
 
 
 // Not functional: gateway discovery
@@ -60,7 +54,6 @@ log.info('received mqtt: ' + options.mqtt_ip)
 gw = eNet.gateway({host: config.enet_ip});
 
 // TODO: check if a gateway has been found
-
 discovered();
 
 // Process discovered gateway
