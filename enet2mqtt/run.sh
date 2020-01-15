@@ -1,9 +1,9 @@
 #!/bin/bash
 set -e
+
 # Try stuff that should work
 node -v 
 npm -v 
-gulp -v 
 # Retrieving options variables 
 CONFIG_PATH=/data/options.json 
 ENET_IP="$(jq --raw-output '.enet_ip' $CONFIG_PATH)" 
