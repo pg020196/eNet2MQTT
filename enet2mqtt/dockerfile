@@ -14,10 +14,6 @@ COPY index.js /
 COPY config.js /
 COPY config.json /
 
-# Directly run index.js
-#RUN chmod a+x /index.js
-#CMD [ "/index.js" ]
-
 # Run run.sh
 RUN chmod a+x /run.sh
 CMD [ "/run.sh" ]
