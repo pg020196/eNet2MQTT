@@ -2,10 +2,6 @@
 
 # Try stuff that should work
 echo Shell script started
-echo Node version:
-node -v 
-echo NPM version:
-npm -v 
 
 # Retrieving options variables 
 CONFIG_PATH=/data/options.json 

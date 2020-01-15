@@ -20,7 +20,7 @@ var enet_ip = config.enet_ip
 var log_level = config.log_level
 
 // Start script with info logs
-log.setLevel(config.verbosity);
+log.setLevel(log_level);
 log.info(pkg.name + ' ' + haconfig.version + ' starting');
 
 log.info("enet_ip: " + enet_ip + "mqtt_ip: " + mqtt_ip + " log_level: " + log_level)
