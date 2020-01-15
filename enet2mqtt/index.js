@@ -14,32 +14,37 @@ var enetConnected = false;
 var enetAddress;
 var gw;
 
+// Fill options from optoins.json (using variables passed to config.js)
+var mqtt_ip = config.mqtt_ip
+var enet_ip = config.enet_ip
+var log_level = config.log_level
+
 // Start script with info logs
 log.setLevel(config.verbosity);
 log.info(pkg.name + ' ' + haconfig.version + ' starting');
 
-
-// Retrieve options from CONFIG.js
-var mqtt_ip = config.mqtt_ip
-var enet_ip = config.enet_ip
-var log_level = config.log_level
 log.info("enet_ip: " + enet_ip + "mqtt_ip: " + mqtt_ip + " log_level: " + log_level)
 
 
 // Manually connect to gateway
-gw = eNet.gateway({host: config.enet_ip});
+gw = eNet.gateway({host: enet_ip});
 
-// TODO: check if a gateway has been found
-discovered();
+// Connect to the discovered gateway
+enetAddress = gw.host;
+log.info (enetAddress);
+gw.idleTimeout = 600000;
+
+log.info('connecting now');
+gw.connect();
+
+log.info('calling connect function');
+
+connected();
 
 // Process discovered gateway
-function discovered()
+function connected()
 {
-    // Connect to the discovered gateway
-    enetAddress = gw.host;
-    log.info (enetAddress);
-    gw.idleTimeout = 600000;
-    gw.connect();
+    
 
     // Get gateway version
     log.info("Requesting gateway version.");
@@ -109,9 +114,9 @@ function discovered()
 
 
     // Connect to mqtt
-    log.info('mqtt trying to connect', config.mqttUrl);
+    log.info('mqtt trying to connect', mqtt_ip);
 
-    mqtt = Mqtt.connect(config.mqttUrl, {
+    mqtt = Mqtt.connect(mqtt_ip, {
         clientId: config.name + '_' + Math.random().toString(16).substr(2, 8),
         will: {topic: config.name + '/connected', payload: '0', retain: (config.mqttRetain)},
         rejectUnauthorized: !config.insecure
@@ -120,7 +125,7 @@ function discovered()
 	// Log mqtt connection succeeded
     mqtt.on('connect', () => {
         mqttConnected = true;
-        log.info('mqtt connected', config.mqttUrl);
+        log.info('mqtt connected', mqtt_ip);
         mqtt.publish(config.name + '/connected', enetConnected ? '2' : '1', {retain: config.mqttRetain});
         log.info('mqtt subscribe', config.name + '/set/#');
 	      mqtt.subscribe(config.name + '/set/#');
@@ -130,7 +135,7 @@ function discovered()
     mqtt.on('close', () => {
         if (mqttConnected) {
             mqttConnected = false;
-            log.info('mqtt closed ' + config.mqttUrl);
+            log.info('mqtt closed ' + mqtt_ip);
         }
     });
 
