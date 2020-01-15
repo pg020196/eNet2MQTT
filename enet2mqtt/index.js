@@ -23,29 +23,21 @@ var log_level = config.log_level
 log.setLevel(log_level);
 log.info(pkg.name + ' ' + haconfig.version + ' starting');
 
-log.info("enet_ip: " + enet_ip + "mqtt_ip: " + mqtt_ip + " log_level: " + log_level)
+log.info("enet_ip: " + enet_ip + " mqtt_ip: " + mqtt_ip + " log_level: " + log_level)
 
 
 // Manually connect to gateway
 gw = eNet.gateway({host: enet_ip});
-
-// Connect to the discovered gateway
 enetAddress = gw.host;
-log.info (enetAddress);
 gw.idleTimeout = 600000;
 
-log.info('connecting now');
 gw.connect();
-
-log.info('calling connect function');
 
 connected();
 
 // Process discovered gateway
 function connected()
 {
-    
-
     // Get gateway version
     log.info("Requesting gateway version.");
     gw.getVersion(function(err, res) {
