@@ -68,13 +68,13 @@ function connected()
         var arr = this.data.split("\r\n\r\n");
         log.debug('split data (arr) looks like: ' + arr);
 
-        this.data = arr[arr.length-1];
+        this.data = arr[arr.length];
         log.debug('updated this.data looks like: ' + this.data);
 
         for (var i = 0; i < arr.length; ++i) { //TODO: on first connection to the gateway, an error is thrown
             try{
 				//log.debug("loggin easy stuff. Arr length:" + arr.length)
-				//log.debug("array content at this i" + i + arr[i])
+				log.debug("array content at this i: " + i + arr[i])
                 var json=JSON.parse(arr[i]);
                 log.debug('Generated json looks like: ' + JSON.stringify(json));
                 //publish dimmer and switch states on mqtt
