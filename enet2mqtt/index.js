@@ -79,7 +79,8 @@ function connected()
                 //log.debug('Generated json looks like: ' + JSON.stringify(json));
                 //publish dimmer and switch states on mqtt
                 if (!(json.VALUES === undefined)){
-                    log.info("Value that passed JSON test: " + JSON.stringify(json));
+                    // This creates a lot of errors:
+                    log.debug("Value that passed JSON test: " + JSON.stringify(json));
 					log.info("Publishing updated info from gateway");
                     for (var i = 0; i < json.VALUES.length; i++){
                         mqttPublish('enet/get/dimmmer/'+json.VALUES[i].NUMBER  , json.VALUES[i].VALUE, {retain: config.mqttRetain});
