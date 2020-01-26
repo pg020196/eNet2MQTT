@@ -68,10 +68,10 @@ function connected()
         var arr = this.data.split("\r\n\r\n");
         log.debug('split data (arr) looks like: ' + arr);
 
-        this.data = arr[arr.length];
+        this.data = arr[arr.length -1];
         log.debug('updated this.data looks like: ' + this.data);
 
-        for (var i = 0; i < arr.length; ++i) { //TODO: on first connection to the gateway, an error is thrown
+        for (var i = 0; i < arr.length -1; ++i) { //TODO: on first connection to the gateway, an error is thrown
             try{
 				//log.debug("loggin easy stuff. Arr length:" + arr.length)
 				//log.debug("array content at this i: " + i + arr[i])
