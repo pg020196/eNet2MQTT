@@ -22,7 +22,7 @@ module.exports = require('yargs')
     .default({
         'mqtt_ip': '192.168.2.18',
         'enet_ip': '192.168.2.2',
-        'name': 'eNet2MQTT',
+        'name': 'enet',
         'log_level': 'info',
         'mqtt-retain': true,
         'channelArray': [16, 17, 18, 19, 20]

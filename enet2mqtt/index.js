@@ -18,6 +18,7 @@ var gw;
 var mqtt_ip = 'mqtt://' + config.mqtt_ip
 var enet_ip = config.enet_ip
 var log_level = config.log_level
+var channelArray = config.channelArray
 
 // Start script with info logs
 log.setLevel(log_level);
@@ -33,26 +34,37 @@ gw.idleTimeout = 600000;
 
 gw.connect();
 
-connected();
+// Get gateway version
+log.info("Requesting gateway version.");
+gw.getVersion(function(err, res) {
+    if (err) log.error("error: " + err);
+    else log.debug("command succeeded: \n" + JSON.stringify(res));
+    enetConnected = true;
+});
+
+// Get channel info
+log.info("Requesting Channel Info");
+gw.getChannelInfo(function(err, res) {
+    if (err) log.error("error: " + err);
+    else {
+        //channelArray = []
+        log.debug("Channel Info command succeeded: \n" + JSON.stringify(res));
+
+        // TODO: this has to finish before connected can be called.
+        // log.info("Setting channelArray");
+        // for (i = 0; i < res.length; i++) {
+        //     if (res[i] === 1) channelArray += i;
+        // }
+        // wait(3);
+        log.info("channelArray = " + channelArray)
+        connected();
+    }
+});
+
 
 // Process discovered gateway
 function connected()
 {
-    // Get gateway version
-    log.info("Requesting gateway version.");
-    gw.getVersion(function(err, res) {
-        if (err) log.error("error: " + err);
-        else log.debug("command succeeded: \n" + JSON.stringify(res));
-        enetConnected = true;
-    });
-
-    // Get channel info
-    log.info("Requesting Channel Info");
-    gw.getChannelInfo(function(err, res) {
-        if (err) log.error("error: " + err);
-        else log.debug("command succeeded: \n" + JSON.stringify(res));
-    });
-
     // Get project listStyleType
     log.info("Requesting Project List");
     gw.getProjectList(function(err, res) {
@@ -96,12 +108,12 @@ function connected()
 
     // Sign in to channels if connection to enet is lost
     gw.client.on('close', function() {
-        signIn(config.channelArray);
+        signIn(channelArray);
     });
 
     // Sign in every 5 minutes
     (function(){
-        signIn(config.channelArray);
+        signIn(channelArray);
         setTimeout(arguments.callee, 300000);
     })();
 
