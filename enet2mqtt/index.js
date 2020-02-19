@@ -85,10 +85,7 @@ function connected()
 
         for (var i = 0; i < arr.length -1; ++i) { //TODO: on first connection to the gateway, an error is thrown
             try{
-				//log.debug("loggin easy stuff. Arr length:" + arr.length)
-				//log.debug("array content at this i: " + i + arr[i])
                 var json=JSON.parse(arr[i]);
-                //log.debug('Generated json looks like: ' + JSON.stringify(json));
                 //publish dimmer and switch states on mqtt
                 if (!(json.VALUES === undefined)){
                     // This creates a lot of errors:
@@ -210,6 +207,7 @@ function connected()
 
 // Function to set a value on the gateway
 function setValue(type, name, payload) {
+    log.info("Setting " + type + " " + name + " to: " + payload);
     gw.setValueDim(name, payload, function(err, res) {
         if (err) log.error("error: " + err);
         else {
