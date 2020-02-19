@@ -10,7 +10,7 @@
     "options": {
       "mqtt_ip": "192.168.2.18",
       "enet_ip": "192.168.2.2",
-      "log_level": "info",
+      "log_level": "info"
     },
     "schema": {
       "mqtt_ip": "str",
