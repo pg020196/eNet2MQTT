@@ -15,6 +15,6 @@
     "schema": {
       "mqtt_ip": "str",
       "enet_ip": "str",
-      "log_level": "match(^(trace|debug|info|notice|warning|error|fatal)$)",
+      "log_level": "match(^(trace|debug|info|notice|warning|error|fatal)$)"
     }
 }
