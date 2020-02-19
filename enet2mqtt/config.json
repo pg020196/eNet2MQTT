@@ -10,11 +10,13 @@
     "options": {
       "mqtt_ip": "192.168.2.18",
       "enet_ip": "192.168.2.2",
-      "log_level": "info"
+      "log_level": "info",
+      "channelArray": [16, 17, 18, 19, 20]
     },
     "schema": {
       "mqtt_ip": "str",
       "enet_ip": "str",
       "log_level": "match(^(trace|debug|info|notice|warning|error|fatal)$)"
+      "channelArray": "array"
     }
 }

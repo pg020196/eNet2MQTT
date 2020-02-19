@@ -25,7 +25,7 @@ module.exports = require('yargs')
         'name': 'eNet2MQTT',
         'log_level': 'info',
         'mqtt-retain': true,
-        'channelArray': [16, 17, 18, 19]
+        'channelArray': [16, 17, 18, 19, 20]
     })
     .version()
     .help('help')
