@@ -20,7 +20,7 @@ module.exports = require('yargs')
     })
     .boolean('mqtt-retain')
     .default({
-        'mqtt_ip': 'mqtt://192.168.2.18',
+        'mqtt_ip': '192.168.2.18',
         'enet_ip': '192.168.2.2',
         'name': 'eNet2MQTT',
         'log_level': 'info',
