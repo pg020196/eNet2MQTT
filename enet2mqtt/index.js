@@ -92,7 +92,7 @@ function connected()
                     log.debug("Value that passed JSON test: " + JSON.stringify(json));
 					log.info("Publishing updated info from gateway");
                     for (var i = 0; i < json.VALUES.length; i++){
-                        mqttPublish('enet/get/dimmmer/'+json.VALUES[i].NUMBER  , json.VALUES[i].VALUE, {retain: config.mqttRetain});
+                        mqttPublish('enet/get/dimmer/'+json.VALUES[i].NUMBER  , json.VALUES[i].VALUE, {retain: config.mqttRetain});
                         mqttPublish('enet/get/switch/'+json.VALUES[i].NUMBER  , json.VALUES[i].STATE, {retain: config.mqttRetain});
                     }
                 }
