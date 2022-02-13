@@ -5,7 +5,6 @@
     "description": "Attempt at eNet2MQTT add-on",
     "url": "https://github.com/thomashogema/enet2mqtt",
     "arch": ["armhf", "armv7", "aarch64", "amd64", "i386"],
-    "startup": "before",
     "boot": "auto",
     "options": {
       "mqtt_ip": "192.168.2.18",
