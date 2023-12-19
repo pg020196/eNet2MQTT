@@ -14,7 +14,7 @@ var enetConnected = false;
 var enetAddress;
 var gw;
 
-// Fill options from optoins.json (using variables passed to config.js)
+// Fill options from options.json (using variables passed to config.js)
 var mqtt_ip = 'mqtt://' + config.mqtt_ip
 var enet_ip = config.enet_ip
 var log_level = config.log_level
