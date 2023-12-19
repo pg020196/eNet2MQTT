@@ -26,7 +26,7 @@ var mqtt_password = config.mqtt_password
 log.setLevel(log_level);
 log.info(pkg.name + ' ' + haconfig.version + ' starting');
 
-log.info("enet_ip: " + enet_ip + " mqtt_ip: " + mqtt_ip + " log_level: " + log_level)
+log.info("enet_ip: " + enet_ip + " mqtt_ip: " + mqtt_ip + " log_level: " + log_level + " mqtt_username: "+ mqtt_username)
 
 
 // Manually connect to gateway
