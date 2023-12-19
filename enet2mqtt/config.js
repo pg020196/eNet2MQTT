@@ -10,13 +10,17 @@ module.exports = require('yargs')
     .describe('help', 'show help')
     .describe('channelArray', 'Array with channels to monitor, [ch1, ch2, ..]')
     .describe('mqtt-retain', 'enable/disable retain flag for mqtt messages')
+    .describe('mqtt_username', 'username for mqtt broker')
+    .describe('mqtt_password', 'password for mqtt broker')
     .alias({
         h: 'help',
         m: 'mqtt_ip',
         e: 'enet_ip',
         n: 'name',
         v: 'log_level',
-        c: 'channelArray'
+        c: 'channelArray',
+        u: 'mqtt_username',
+        p: 'mqtt_password'
     })
     .boolean('mqtt-retain')
     .default({
@@ -25,7 +29,9 @@ module.exports = require('yargs')
         'name': 'enet',
         'log_level': 'info',
         'mqtt-retain': true,
-        'channelArray': [16, 17, 18, 19, 20]
+        'channelArray': [16, 17, 18, 19, 20],
+        'mqtt_username': '',
+        'mqtt_password': ''
     })
     .version()
     .help('help')
