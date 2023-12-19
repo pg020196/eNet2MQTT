@@ -19,6 +19,8 @@ var mqtt_ip = 'mqtt://' + config.mqtt_ip
 var enet_ip = config.enet_ip
 var log_level = config.log_level
 var channelArray = config.channelArray
+var mqtt_username = config.mqtt_username
+var mqtt_password = config.mqtt_password
 
 // Start script with info logs
 log.setLevel(log_level);
@@ -121,7 +123,9 @@ function connected()
     mqtt = Mqtt.connect(mqtt_ip, {
         clientId: config.name + '_' + Math.random().toString(16).substr(2, 8),
         will: {topic: config.name + '/connected', payload: '0', retain: (config.mqttRetain)},
-        rejectUnauthorized: !config.insecure
+        rejectUnauthorized: !config.insecure,
+        username:mqtt_username,
+        password:mqtt_password
     });
 
 	// Log mqtt connection succeeded
