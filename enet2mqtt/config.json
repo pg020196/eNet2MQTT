@@ -19,6 +19,6 @@
       "enet_ip": "str",
       "log_level": "match(^(trace|debug|info|notice|warning|error|fatal)$)",
       "mqtt_username": "str",
-      "mqtt_password": "str"
+      "mqtt_password": "password"
     }
 }
