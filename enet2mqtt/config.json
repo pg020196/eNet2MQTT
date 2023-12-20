@@ -17,7 +17,12 @@
     "mqtt_username": "username",
     "mqtt_password": "password",
     "enet_ip": "127.0.0.1",
-    "enet_channel_array": [16,17,18,19],
+    "enet_channel_array": [
+      16,
+      17,
+      18,
+      19
+    ],
     "log_level": "info"
   },
   "init": false,
@@ -26,7 +31,7 @@
     "mqtt_username": "str",
     "mqtt_password": "password",
     "enet_ip": "str",
-    "enet_channel_array": "list",
+    "enet_channel_array": ["int"],
     "log_level": "match(^(trace|debug|info|notice|warning|error|fatal)$)"
   }
 }
