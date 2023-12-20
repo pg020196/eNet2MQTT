@@ -3,7 +3,7 @@
     "version": "0.3",
     "slug": "enet2mqtt",
     "description": "Attempt at eNet2MQTT add-on",
-    "url": "https://github.com/thomashogema/enet2mqtt",
+    "url": "https://github.com/pg020196/enet2mqtt",
     "arch": ["armhf", "armv7", "aarch64", "amd64", "i386"],
     "boot": "auto",
     "options": {
