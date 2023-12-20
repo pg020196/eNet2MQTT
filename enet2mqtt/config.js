@@ -29,7 +29,7 @@ module.exports = require('yargs')
         'mqtt_password': '',
         'mqtt_retain': true,
         'enet_ip': '127.0.0.1',
-        'enet_channel_array': '[16,17,18,19]',
+        'enet_channel_array': [16,17,18,19],
         'name': 'enet',
         'log_level': 'info',
     })
