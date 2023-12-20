@@ -1,26 +1,32 @@
 {
-    "name": "eNet2MQTT",
-    "version": "0.3",
-    "slug": "enet2mqtt",
-    "description": "Attempt at eNet2MQTT add-on",
-    "url": "https://github.com/pg020196/enet2mqtt",
-    "arch": ["armhf", "armv7", "aarch64", "amd64", "i386"],
-    "boot": "auto",
-    "options": {
-      "mqtt_ip": "127.0.0.1",
-      "mqtt_username": "username",
-      "mqtt_password": "password",
-      "enet_ip": "127.0.0.1",
-      "enet_channel_array": "[16,17,18,19]",
-      "log_level": "info"
-    },
-    "init": false,
-    "schema": {
-      "mqtt_ip": "str",
-      "mqtt_username": "str",
-      "mqtt_password": "password",
-      "enet_ip": "str",
-      "enet_channel_array": "str",
-      "log_level": "match(^(trace|debug|info|notice|warning|error|fatal)$)"
-    }
+  "name": "eNet2MQTT",
+  "version": "0.3",
+  "slug": "enet2mqtt",
+  "description": "Attempt at eNet2MQTT add-on",
+  "url": "https://github.com/pg020196/enet2mqtt",
+  "arch": [
+    "armhf",
+    "armv7",
+    "aarch64",
+    "amd64",
+    "i386"
+  ],
+  "boot": "auto",
+  "options": {
+    "mqtt_ip": "127.0.0.1",
+    "mqtt_username": "username",
+    "mqtt_password": "password",
+    "enet_ip": "127.0.0.1",
+    "enet_channel_array": "[16,17,18,19]",
+    "log_level": "info"
+  },
+  "init": false,
+  "schema": {
+    "mqtt_ip": "str",
+    "mqtt_username": "str",
+    "mqtt_password": "password",
+    "enet_ip": "str",
+    "enet_channel_array": "str",
+    "log_level": "match(^(trace|debug|info|notice|warning|error|fatal)$)"
+  }
 }
