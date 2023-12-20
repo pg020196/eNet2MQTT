@@ -18,7 +18,7 @@ var gw;
 var mqtt_ip = 'mqtt://' + config.mqtt_ip
 var enet_ip = config.enet_ip
 var log_level = config.log_level
-var channelArray = config.channelArray
+var enet_channel_array = config.enet_channel_array
 var mqtt_username = config.mqtt_username
 var mqtt_password = config.mqtt_password
 
@@ -58,7 +58,7 @@ gw.getChannelInfo(function(err, res) {
         //     if (res[i] === 1) channelArray += i;
         // }
         // wait(3);
-        log.info("channelArray = " + channelArray)
+        log.info("channelArray = " + enet_channel_array)
         connected();
     }
 });
@@ -107,12 +107,12 @@ function connected()
 
     // Sign in to channels if connection to enet is lost
     gw.client.on('close', function() {
-        signIn(channelArray);
+        signIn(enet_channel_array);
     });
 
     // Sign in every 5 minutes
     (function(){
-        signIn(channelArray);
+        signIn(enet_channel_array);
         setTimeout(arguments.callee, 300000);
     })();
 
