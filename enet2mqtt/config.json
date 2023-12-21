@@ -1,9 +1,9 @@
 {
   "name": "eNet2MQTT",
-  "version": "0.3",
+  "version": "0.4.0",
   "slug": "enet2mqtt",
-  "description": "Attempt at eNet2MQTT add-on",
-  "url": "https://github.com/pg020196/enet2mqtt",
+  "description": "Another attempt at eNet2MQTT add-on",
+  "url": "https://github.com/pg020196/eNet2MQTT",
   "arch": [
     "armhf",
     "armv7",
