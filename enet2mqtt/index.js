@@ -18,13 +18,15 @@ var gw;
 var mqtt_ip = 'mqtt://' + config.mqtt_ip
 var enet_ip = config.enet_ip
 var log_level = config.log_level
-var enet_channel_array = config.enet_channel_array
+var enet_channel_array = config.enet_channel_array.split(',').map(Number)
 var mqtt_username = config.mqtt_username
 var mqtt_password = config.mqtt_password
 
 // Start script with info logs
 log.setLevel(log_level);
 log.info(pkg.name + ' ' + haconfig.version + ' starting');
+
+log.info("enet_channel_array: " + enet_channel_array)
 
 log.info("enet_ip: " + enet_ip + " mqtt_ip: " + mqtt_ip + " log_level: " + log_level + " mqtt_username: "+ mqtt_username)
 
