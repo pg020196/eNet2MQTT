@@ -18,7 +18,7 @@ var gw;
 var mqtt_ip = 'mqtt://' + config.mqtt_ip
 var enet_ip = config.enet_ip
 var log_level = config.log_level
-var enet_channel_array = config.enet_channel_array.split(',').map(Number)
+var enet_channel_array = config.enet_channel_array.toString().split(',').map(Number)
 var mqtt_username = config.mqtt_username
 var mqtt_password = config.mqtt_password
 
